@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from model import NeuralNet
+from mymath import relu, logistic_sigmoid
 
 labels_map = {
     0: "T-Shirt",
@@ -40,9 +41,9 @@ test_data = datasets.FashionMNIST(
 )
 
 model = NeuralNet(28*28, 10)
-model.addHiddenLayer(300)
-model.addHiddenLayer(200)
-model.addFinalLayer(10)
+model.add_layer(300, relu)
+model.add_layer(200, relu)
+model.add_layer(10, logistic_sigmoid)
 
 for img, label in training_data:
     input_data = img.numpy().flatten()
